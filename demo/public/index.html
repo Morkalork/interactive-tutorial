@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            clifford: '#da373d',
+          }
+        }
+      }
+    }
+  </script>
+  <title>INTERACTIVE TUTORIAL DEMO</title>
+  <style>
+    html,
+    body {
+      min-height: 100%;
+      height: 100%;
+    }
+
+    body {
+      background: rgb(94, 146, 171);
+      background: radial-gradient(circle, rgba(94, 146, 171, 1) 2%, rgba(199, 243, 255, 0.8524453726803222) 54%, rgba(71, 221, 251, 1) 100%);
+    }
+
+    input {
+      width: 100%;
+    }
+
+    .interactive-tutorial-text {
+      background-color: #fff;
+      padding: 10px;
+      border-radius: 5px;
+      box-shadow: 0 0 1rem rgba(0, 0, 0, 0.2);
+    }
+
+    .interactive-tutorial-element-overlay {
+      animation: pulse-orange 1s;
+    }
+
+    @keyframes pulse-orange {
+      0% {
+        background-color: rgba(255, 255, 255, 0.5);
+      }
+
+      100% {
+        background-color: rgba(255, 255, 255, 0);
+      }
+    }
+
+    .interactive-tutorial-text::after {
+      color: #fff;
+      position: absolute;
+      font-size: 1rem;
+    }
+
+    .interactive-tutorial-text-bottom::after {
+      top: -1rem;
+      left: 50%;
+      content: '▲';
+    }
+
+    .interactive-tutorial-text-top::after {
+      bottom: -1rem;
+      left: 50%;
+      content: '▼';
+    }
+
+    .interactive-tutorial-text-right::after {
+      left: -.75rem;
+      content: '◄';
+    }
+
+    .interactive-tutorial-text-left::after {
+      right: -.75rem;
+      content: '►';
+    }
+
+    .interactive-tutorial-element-overlay {
+      box-shadow: inset 0 0 1rem .1rem rgba(0, 0, 0, .75);
+    }
+  </style>
+</head>
+
+<body class="p-4">
+  <nav class="flex items-center justify-between flex-wrap bg-neutral-50 p-6 m-4 opacity-90 shadow-md"
+    data-id="tutorial-navigation">
+    <div class="flex items-center flex-shrink-0 text-cyan-500 mr-6">
+      <span class="font-semibold text-xl tracking-tight">Interactive Tutorial DEMO</span>
+    </div>
+    <div class="block lg:hidden">
+      <button
+        class="flex items-center px-3 py-2 border rounded text-cyan-500 border-teal-400 hover:text-white hover:border-white">
+        <svg class="fill-current h-3 w-3" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+          <title>Menu</title>
+          <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z" />
+        </svg>
+      </button>
+    </div>
+    <div class="w-full block flex-grow lg:flex lg:items-center lg:w-auto">
+      <div class="text-sm lg:flex-grow">
+        <a href="#responsive-header" class="block mt-4 lg:inline-block lg:mt-0 text-cyan-500 hover:text-white mr-4">
+          Docs
+        </a>
+        <a href="#responsive-header" class="block mt-4 lg:inline-block lg:mt-0 text-cyan-500 hover:text-white mr-4">
+          Examples
+        </a>
+        <a href="#responsive-header" class="block mt-4 lg:inline-block lg:mt-0 text-cyan-500 hover:text-white">
+          Roadmap
+        </a>
+      </div>
+      <div>
+        <a href="#"
+          class="interactive-tutorial-launcher cursor-pointer inline-block text-sm px-4 py-2 leading-none border-2 rounded text-cyan-500 hover:border-transparent-50 hover:text-teal-500 hover:bg-white mt-4 lg:mt-0">Launch
+          tutorial</a>
+      </div>
+    </div>
+  </nav>
+  <div class="flex">
+    <div class="signup-form w-full max-w-md m-4 text-cyan-500 bg-neutral-50 opacity-90 shadow-md"
+      data-id="tutorial-signup">
+      <form class="px-8 pt-6 pb-8">
+        <h2 class="font-semibold text-xl tracking-tight">Signup form</h2>
+        <section class="mb-4">
+          <h5>Name</h5>
+          <input type="text" class="shadow border rounded p-2" name="name" />
+        </section>
+        <section class="mb-4">
+          <h5>Email</h5>
+          <input type="email" class="shadow border rounded p-2" name="email" />
+        </section>
+        <section class="mb-4">
+          <h5>Are you a robot?</h5>
+          <input type="text" class="shadow border rounded p-2" name="robot"
+            placeholder="If not, please just enter 'no'." />
+        </section>
+        <section>
+          <input type="submit"
+            class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+            value="Submit" />
+        </section>
+      </form>
+    </div>
+    <div class="flex flex-wrap shadow-md rounded px-8 pt-6 pb-8 m-4 text-cyan-500  bg-neutral-50 opacity-90"
+      data-id="tutorial-information">
+      <article class="w-60 m-4">
+        <header>
+          <h2 class="font-semibold text-xl tracking-tight">Easy to use</h2>
+        </header>
+        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maiores impedit perferendis suscipit eaque, iste
+          dolor cupiditate blanditiis ratione.</p>
+      </article>
+      <article class="w-60 m-4">
+        <header>
+          <h2 class="font-semibold text-xl tracking-tight">Highly configurable</h2>
+        </header>
+        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maiores impedit perferendis suscipit eaque, iste
+          dolor cupiditate blanditiis ratione.</p>
+      </article>
+      <article class="w-60 m-4">
+        <header>
+          <h2 class="font-semibold text-xl tracking-tight">Typescript support</h2>
+        </header>
+        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maiores impedit perferendis suscipit eaque, iste
+          dolor cupiditate blanditiis ratione.</p>
+      </article>
+      <article class="w-60 m-4">
+        <header>
+          <h2 class="font-semibold text-xl tracking-tight">Not terrible</h2>
+        </header>
+        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maiores impedit perferendis suscipit eaque, iste
+          dolor cupiditate blanditiis ratione.</p>
+      </article>
+    </div>
+  </div>
+  <footer class="bg-neutral-50 p-6 m-4 opacity-90 shadow-md text-cyan-500" data-id="tutorial-footer">
+    <div class="w-full block flex-grow lg:flex lg:items-center lg:w-auto">
+      <div class="text-sm lg:flex-grow">
+        <a href="#responsive-header" class="block mt-4 lg:inline-block lg:mt-0 text-cyan-500 hover:text-white mr-4">
+          Download/Install
+        </a>
+        <a href="#responsive-header" class="block mt-4 lg:inline-block lg:mt-0 text-cyan-500 hover:text-white mr-4">
+          License
+        </a>
+        <a href="#responsive-header" class="block mt-4 lg:inline-block lg:mt-0 text-cyan-500 hover:text-white">
+          Malmö FF
+        </a>
+      </div>
+    </div>
+  </footer>
+  <script type="text/javascript" src="main-bundle.js"></script>
+</body>
+
+</html>
