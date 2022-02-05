@@ -72,19 +72,21 @@ Available options are:
 
 And to style it using the available class selectors:
 
-| Selector                                        | Description                                             |
-| ----------------------------------------------- | ------------------------------------------------------- |
-| .interactive-tutorial-overlay                   | The main overlay ontop of which the tutorial is placed. |
-| .interactive-tutorial-element-overlay           | The overlay ontop of the currently showing section.     |
-| .interactive-tutorial-cloaking-rectangle-top    | The top cloaking rectangle.                             |
-| .interactive-tutorial-cloaking-rectangle-right  | The right cloaking rectangle.                           |
-| .interactive-tutorial-cloaking-rectangle-bottom | The bottom cloaking rectangle.                          |
-| .interactive-tutorial-cloaking-rectangle-left   | The left cloaking rectangle.                            |
-| .interactive-tutorial-text                      | The text element.                                       |
-| .interactive-tutorial-text-top                  | The text element whenever it is position at the top.    |
-| .interactive-tutorial-text-right                | The text element whenever it is position at the right.  |
-| .interactive-tutorial-text-bottom               | The text element whenever it is position at the bottom. |
-| .interactive-tutorial-text-left                 | The text element whenever it is position at the left.   |
+| Selector                                        | Description                                                                            |
+| ----------------------------------------------- | -------------------------------------------------------------------------------------- |
+| .interactive-tutorial-overlay                   | The main overlay ontop of which the tutorial is placed.                                |
+| .interactive-tutorial-element-overlay           | The overlay ontop of the currently showing section.                                    |
+| .interactive-tutorial-cloaking-rectangle-top    | The top cloaking rectangle.                                                            |
+| .interactive-tutorial-cloaking-rectangle-right  | The right cloaking rectangle.                                                          |
+| .interactive-tutorial-cloaking-rectangle-bottom | The bottom cloaking rectangle.                                                         |
+| .interactive-tutorial-cloaking-rectangle-left   | The left cloaking rectangle.                                                           |
+| .interactive-tutorial-text                      | The text element.                                                                      |
+| .interactive-tutorial-text-top                  | The text element whenever it is positioned at the top.                                 |
+| .interactive-tutorial-text-right                | The text element whenever it is positioned at the right.                               |
+| .interactive-tutorial-text-bottom               | The text element whenever it is positioned at the bottom.                              |
+| .interactive-tutorial-text-left                 | The text element whenever it is positioned at the left.                                |
+| .interactive-tutorial-text-top-right            | The text element whenever it is positioned above an element but starts from the right. |
+| .interactive-tutorial-text-bottom-right         | The text element whenever it is positioned below an element but starts from the right. |
 
 A basic styling that looks like the above example would look like this:
 
@@ -96,10 +98,6 @@ A basic styling that looks like the above example would look like this:
   box-shadow: 0 0 1rem rgba(0, 0, 0, 0.2);
 }
 
-/**
-  Add a pulsating effect whenever you move to a new area to
-  highlight it to the user.
-*/
 .interactive-tutorial-element-overlay {
   animation: pulse-orange 1s;
 }
@@ -122,14 +120,23 @@ A basic styling that looks like the above example would look like this:
 
 .interactive-tutorial-text-bottom::after {
   top: -1rem;
-  left: 50%;
+  left: 10%;
   content: "▲";
 }
 
 .interactive-tutorial-text-top::after {
   bottom: -1rem;
-  left: 50%;
+  left: 10%;
   content: "▼";
+}
+
+/**
+  If the textbox is too far to the right, assume that the left part
+  of the textbox is outside of the element it's decorating.
+*/
+.interactive-tutorial-text-bottom-right::after,
+.interactive-tutorial-text-top-right::after {
+  left: 80%;
 }
 
 .interactive-tutorial-text-right::after {
@@ -144,6 +151,15 @@ A basic styling that looks like the above example would look like this:
 
 .interactive-tutorial-element-overlay {
   box-shadow: inset 0 0 1rem 0.1rem rgba(0, 0, 0, 0.75);
+}
+
+.enlargable-area {
+  height: 75px;
+  transition: 1s;
+}
+
+.enlargable-area.enlarged {
+  height: 200px;
 }
 ```
 

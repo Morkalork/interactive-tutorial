@@ -63,14 +63,23 @@
 
     .interactive-tutorial-text-bottom::after {
       top: -1rem;
-      left: 50%;
+      left: 10%;
       content: '▲';
     }
 
     .interactive-tutorial-text-top::after {
       bottom: -1rem;
-      left: 50%;
+      left: 10%;
       content: '▼';
+    }
+
+    /**
+      If the textbox is too far to the right, assume that the left part
+      of the textbox is outside of the element it's decorating.
+    */
+    .interactive-tutorial-text-bottom-right::after,
+    .interactive-tutorial-text-top-right::after {
+      left: 80%;
     }
 
     .interactive-tutorial-text-right::after {
@@ -153,7 +162,7 @@
         <section>
           <input type="submit"
             class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-            value="Submit" />
+            value="Submit" data-id="tutorial-signup-submit" />
         </section>
       </form>
     </div>
@@ -192,13 +201,16 @@
   <footer class="bg-neutral-50 p-6 m-4 opacity-90 shadow-md text-cyan-500 enlargable-area" data-id="tutorial-footer">
     <div class="w-full block flex-grow lg:flex lg:items-center lg:w-auto">
       <div class="text-sm lg:flex-grow">
-        <a href="#responsive-header" class="block mt-4 lg:inline-block lg:mt-0 text-cyan-500 hover:text-white mr-4">
+        <a href="#responsive-header" class="block mt-4 lg:inline-block lg:mt-0 text-cyan-500 hover:text-white mr-4"
+          data-id="tutorial-footer-link1">
           Download/Install
         </a>
-        <a href="#responsive-header" class="block mt-4 lg:inline-block lg:mt-0 text-cyan-500 hover:text-white mr-4">
+        <a href="#responsive-header" class="block mt-4 lg:inline-block lg:mt-0 text-cyan-500 hover:text-white mr-4"
+          data-id="tutorial-footer-link2">
           License
         </a>
-        <a href="#responsive-header" class="block mt-4 lg:inline-block lg:mt-0 text-cyan-500 hover:text-white">
+        <a href="#responsive-header" class="block mt-4 lg:inline-block lg:mt-0 text-cyan-500 hover:text-white"
+          data-id="tutorial-footer-link3">
           Malmö FF
         </a>
       </div>

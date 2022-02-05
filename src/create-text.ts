@@ -5,6 +5,19 @@ const maxY = window.innerHeight * 0.8;
 const minX = window.innerWidth * 0.3;
 const maxX = window.innerWidth * 0.7;
 
+const setHorizontalForVerticalPosition = (
+  boundaries: DOMRect,
+  textDiv: HTMLDivElement
+) => {
+  if (boundaries.left > maxX) {
+    textDiv.style.right = `${window.innerWidth - boundaries.right}px`;
+    textDiv.classList.add("interactive-tutorial-text-bottom-right");
+  } else {
+    textDiv.style.left = `${boundaries.left}px`;
+    textDiv.classList.add("interactive-tutorial-text-bottom-left");
+  }
+};
+
 const setTop = (
   textDiv: HTMLDivElement,
   boundaries: DOMRect,
@@ -13,19 +26,8 @@ const setTop = (
   textDiv.style.bottom = `${
     window.innerHeight - (boundaries.top - textOffsetY)
   }px`;
-  textDiv.style.left = `${boundaries.left + boundaries.width / 2}px`;
+  setHorizontalForVerticalPosition(boundaries, textDiv);
   textDiv.classList.add("interactive-tutorial-text-top");
-};
-
-const setRight = (
-  textDiv: HTMLDivElement,
-  boundaries: DOMRect,
-  textOffsetX: number
-) => {
-  textDiv.style.left = `${boundaries.right + textOffsetX}px`;
-  textDiv.style.top = `${boundaries.top + boundaries.height / 2}px`;
-  textDiv.style.maxWidth = `${window.innerWidth * 0.25}px`;
-  textDiv.classList.add("interactive-tutorial-text-right");
 };
 
 const setBottom = (
@@ -34,8 +36,19 @@ const setBottom = (
   textOffsetY: number
 ) => {
   textDiv.style.top = `${boundaries.bottom + textOffsetY}px`;
-  textDiv.style.left = `${boundaries.left + boundaries.width / 2}px`;
+  setHorizontalForVerticalPosition(boundaries, textDiv);
   textDiv.classList.add("interactive-tutorial-text-bottom");
+};
+
+const setRight = (
+  textDiv: HTMLDivElement,
+  boundaries: DOMRect,
+  textOffsetX: number
+) => {
+  textDiv.style.left = `${boundaries.right + textOffsetX}px`;
+  textDiv.style.top = `${boundaries.top}px`;
+  textDiv.style.maxWidth = `${window.innerWidth * 0.25}px`;
+  textDiv.classList.add("interactive-tutorial-text-right");
 };
 
 const setLeft = (
@@ -46,7 +59,7 @@ const setLeft = (
   textDiv.style.right = `${
     window.innerWidth - boundaries.left + textOffsetX
   }px`;
-  textDiv.style.top = `${boundaries.top + boundaries.height / 2}px`;
+  textDiv.style.top = `${boundaries.top}px`;
   textDiv.style.maxWidth = `${window.innerWidth * 0.25}px`;
   textDiv.classList.add("interactive-tutorial-text-left");
 };
@@ -63,7 +76,6 @@ export const createText = (
   textDiv.innerHTML = content;
   textDiv.style.position = "absolute";
 
-  const bcx = boundaries.left + boundaries.width / 2;
   let positionSet = false;
 
   if (preferredPosition === "top") {

@@ -25,6 +25,11 @@ const start = () => {
             preferredPosition: "right",
           },
           {
+            elementSelector: '[data-id="tutorial-signup-submit"]',
+            text: "This is the submit button",
+            preferredPosition: "right",
+          },
+          {
             elementSelector: '[data-id="tutorial-information"]',
             text: "This is some informative information",
             preferredPosition: "left",
@@ -44,6 +49,21 @@ const start = () => {
                 resolve();
               });
             },
+          },
+          {
+            elementSelector: '[data-id="tutorial-footer-link1"]',
+            text: "This is a small link",
+            preferredPosition: "top",
+          },
+          {
+            elementSelector: '[data-id="tutorial-footer-link2"]',
+            text: "This is another small link",
+            preferredPosition: "top",
+          },
+          {
+            elementSelector: '[data-id="tutorial-footer-link3"]',
+            text: "This is a third small link",
+            preferredPosition: "top",
           },
         ],
         padding: 10,
