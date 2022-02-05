@@ -55,20 +55,56 @@ InteractiveTutorial({
 });
 ```
 
+You can use a template as well, if you need some, or all, of your textbox to follow a common design pattern.
+You declare you template as a general argument (called `template`) and then use the property `templateArgs` for the options that wants to use the template.
+In the example below you can see that an argument is described as `{arg}` in the template, or `{arg?}` if you want it to be optional.
+The arguments can be called anything as long as they are matched by the templateArgs.
+
+Example using a template:
+
+```js
+import InteractiveTutorial from "interactive-tutorial";
+
+InteractiveTutorial({
+  options: [
+    {
+      elementSelector: '[data-id="tutorial-footer-link1"]',
+      text: "This is a small link",
+      preferredPosition: "top",
+    },
+    {
+      elementSelector: '[data-id="tutorial-footer-link2"]',
+      preferredPosition: "top",
+      templateArgs: { text: "This one uses a template." },
+    },
+    {
+      elementSelector: '[data-id="tutorial-footer-link3"]',
+      preferredPosition: "top",
+      templateArgs: {
+        text: "This one <b>also</b> uses a template.",
+        optional: "This one also uses the optional argument.",
+      },
+  ],
+  template: `<p>This is the general template!<p><br /><p>{text}</p><br /><p>It is sometimes useful.</p><br /><p><em>{optional?}</em></p>`,
+});
+```
+
 Available options are:
 
-| Option name              | Type                                                                | Description                                                                                                                                                                              |
-| ------------------------ | ------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| options                  | object                                                              | An array of options, each describing an individual step of the tutorial. See the type definition below.                                                                                  |
-| option.elementSelector   | string                                                              | Any valid selector for the element to highlight/focus on.                                                                                                                                |
-| option.text              | string &#124; undefined                                             | The text to show (optional).                                                                                                                                                             |
-| option.preferredPosition | "top" &#124; "right" &#124; "bottom" &#124; "left" &#124; undefined | If you want to select where the text is going to show, select a preferred position. This won't apply if there isn't room for it. Acceptable values are "top", "right", "bottom", "left". |
-| option.padding           | number &#124; undefined                                             | The padding for this particular segment.                                                                                                                                                 |
-| option.textOffsetX       | number &#124; undefined                                             | The specific X offset for this particular text segment                                                                                                                                   |
-| option.textOffsetY       | number &#124; undefined                                             | The specific Y offset for this particular text segment                                                                                                                                   |
-| padding                  | number &#124; undefined                                             | The general padding of all tutorial areas.                                                                                                                                               |
-| textOffsetX              | number &#124; undefined                                             | The general X offset for all text baloons.                                                                                                                                               |
-| textOffsetY              | number &#124; undefined                                             | The general Y offset for all text baloons.                                                                                                                                               |
+| Option name              | Type                                                                | Description                                                                                             |
+| ------------------------ | ------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------- |
+| options                  | object                                                              | An array of options, each describing an individual step of the tutorial. See the type definition below. |
+| option.elementSelector   | string                                                              | Any valid selector for the element to highlight/focus on.                                               |
+| option.text              | string &#124; undefined                                             | The text to show (optional).                                                                            |
+| option.preferredPosition | "top" &#124; "right" &#124; "bottom" &#124; "left" &#124; undefined | If you want to select where the text is going to show, select a preferred position.                     |
+| option.padding           | number &#124; undefined                                             | The padding for this particular segment.                                                                |
+| option.textOffsetX       | number &#124; undefined                                             | The specific X offset for this particular text segment                                                  |
+| option.textOffsetY       | number &#124; undefined                                             | The specific Y offset for this particular text segment                                                  |
+| options.templateArgs     | object &#124; undefined                                             | Arguments for the tmplate, if you are using it                                                          |
+| padding                  | number &#124; undefined                                             | The general padding of all tutorial areas.                                                              |
+| textOffsetX              | number &#124; undefined                                             | The general X offset for all text baloons.                                                              |
+| textOffsetY              | number &#124; undefined                                             | The general Y offset for all text baloons.                                                              |
+| template                 | string &#124; undefined                                             | A template that can be used for all, or some, textboxes.                                                |
 
 And to style it using the available class selectors:
 

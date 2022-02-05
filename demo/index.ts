@@ -44,7 +44,7 @@ const start = () => {
             text: "This is a boring, but now rather large footer",
             preferredPosition: "top",
             onInit: () => {
-              return new Promise((resolve) => {
+              return new Promise<void>((resolve) => {
                 enlargableArea.classList.toggle("enlarged", true);
                 resolve();
               });
@@ -57,13 +57,16 @@ const start = () => {
           },
           {
             elementSelector: '[data-id="tutorial-footer-link2"]',
-            text: "This is another small link",
             preferredPosition: "top",
+            templateArgs: { text: "This one uses a template." },
           },
           {
             elementSelector: '[data-id="tutorial-footer-link3"]',
-            text: "This is a third small link",
             preferredPosition: "top",
+            templateArgs: {
+              text: "This one <b>also</b> uses a template.",
+              optional: "This one also uses the optional argument.",
+            },
           },
         ],
         padding: 10,
@@ -72,6 +75,7 @@ const start = () => {
         onInit: async () => {
           enlargableArea.classList.toggle("enlarged", false);
         },
+        template: `<p>This is the general template!<p><br /><p>{text}</p><br /><p>It is sometimes useful.</p><br /><p><em>{optional?}</em></p>`,
       });
     });
 };

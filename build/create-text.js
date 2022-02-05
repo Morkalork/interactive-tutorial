@@ -34,9 +34,20 @@ const setLeft = (textDiv, boundaries, textOffsetX) => {
     textDiv.style.maxWidth = `${window.innerWidth * 0.25}px`;
     textDiv.classList.add("interactive-tutorial-text-left");
 };
-export const createText = (boundaries, content, textOffsetX, textOffsetY, preferredPosition = "top") => {
+export const createText = (boundaries, content, textOffsetX, textOffsetY, template, templateArgs, preferredPosition = "top") => {
+    if (!content && !templateArgs) {
+        return;
+    }
     const textDiv = document.createElement("div");
     textDiv.classList.add("interactive-tutorial-text");
+    if (template && templateArgs) {
+        content = template;
+        for (var arg in templateArgs) {
+            content = content.replace("{" + arg + "}", templateArgs[arg]);
+            content = content.replace("{" + arg + "?}", templateArgs[arg]);
+        }
+        content = content.replace(/\{(\w+)\?\}/, "");
+    }
     textDiv.innerHTML = content;
     textDiv.style.position = "absolute";
     let positionSet = false;

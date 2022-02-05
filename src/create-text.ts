@@ -69,11 +69,28 @@ export const createText = (
   content: string,
   textOffsetX: number,
   textOffsetY: number,
+  template?: string,
+  templateArgs?: Record<string, string>,
   preferredPosition: Position = "top"
 ) => {
+  if (!content && !templateArgs) {
+    return;
+  }
+
   const textDiv = document.createElement("div");
   textDiv.classList.add("interactive-tutorial-text");
+
+  if (template && templateArgs) {
+    content = template;
+    for (var arg in templateArgs) {
+      content = content.replace("{" + arg + "}", templateArgs[arg]);
+      content = content.replace("{" + arg + "?}", templateArgs[arg]);
+    }
+
+    content = content.replace(/\{(\w+)\?\}/, "");
+  }
   textDiv.innerHTML = content;
+
   textDiv.style.position = "absolute";
 
   let positionSet = false;

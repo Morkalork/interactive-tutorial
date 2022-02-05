@@ -6,6 +6,7 @@ export type GeneralOptions = {
   textOffsetY?: number;
   onInit?: () => Promise<void>;
   turnOffAllTransitions?: boolean;
+  template?: string;
 };
 
 export type TutorialElementOption = {
@@ -16,6 +17,7 @@ export type TutorialElementOption = {
   textOffsetY?: number;
   preferredPosition?: Position;
   onInit?: () => Promise<void>;
+  templateArgs?: { [key: string]: string };
 };
 
 export type Position = "top" | "bottom" | "left" | "right";

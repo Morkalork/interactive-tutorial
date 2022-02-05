@@ -30,6 +30,8 @@ export const prepareStep = async (
         option.text,
         option.textOffsetX || generalOptions.textOffsetX || 0,
         option.textOffsetY || generalOptions.textOffsetY || 0,
+        generalOptions.template,
+        option.templateArgs,
         option.preferredPosition
       )
     : undefined;
