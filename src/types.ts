@@ -1,11 +1,21 @@
+export type GeneralOptions = {
+  options: TutorialElementOption[];
+  id?: string;
+  padding?: number;
+  textOffsetX?: number;
+  textOffsetY?: number;
+  onInit?: () => Promise<void>;
+  turnOffAllTransitions?: boolean;
+};
+
 export type TutorialElementOption = {
-  element?: HTMLElement;
-  elementSelector?: string;
+  elementSelector: string;
   padding?: number;
   text?: string;
   textOffsetX?: number;
   textOffsetY?: number;
   preferredPosition?: Position;
+  onInit?: () => Promise<void>;
 };
 
 export type Position = "top" | "bottom" | "left" | "right";

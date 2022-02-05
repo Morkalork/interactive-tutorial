@@ -86,6 +86,15 @@
     .interactive-tutorial-element-overlay {
       box-shadow: inset 0 0 1rem .1rem rgba(0, 0, 0, .75);
     }
+
+    .enlargable-area {
+      height: 75px;
+      transition: 1s;
+    }
+
+    .enlargable-area.enlarged {
+      height: 200px;
+    }
   </style>
 </head>
 
@@ -180,7 +189,7 @@
       </article>
     </div>
   </div>
-  <footer class="bg-neutral-50 p-6 m-4 opacity-90 shadow-md text-cyan-500" data-id="tutorial-footer">
+  <footer class="bg-neutral-50 p-6 m-4 opacity-90 shadow-md text-cyan-500 enlargable-area" data-id="tutorial-footer">
     <div class="w-full block flex-grow lg:flex lg:items-center lg:w-auto">
       <div class="text-sm lg:flex-grow">
         <a href="#responsive-header" class="block mt-4 lg:inline-block lg:mt-0 text-cyan-500 hover:text-white mr-4">
@@ -191,6 +200,11 @@
         </a>
         <a href="#responsive-header" class="block mt-4 lg:inline-block lg:mt-0 text-cyan-500 hover:text-white">
           Malmö FF
+        </a>
+      </div>
+      <div>
+        <a href="#responsive-header" class="enlarger block mt-4 lg:inline-block lg:mt-0 text-cyan-500 hover:text-white">
+          Enlarge this section
         </a>
       </div>
     </div>

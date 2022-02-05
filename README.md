@@ -60,7 +60,7 @@ Available options are:
 | Option name              | Type                                                                | Description                                                                                                                                                                              |
 | ------------------------ | ------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | options                  | object                                                              | An array of options, each describing an individual step of the tutorial. See the type definition below.                                                                                  |
-| option.elementSelector   | string &#124; undefined                                             | Any valid selector for the element to highlight/focus on.                                                                                                                                |
+| option.elementSelector   | string                                                              | Any valid selector for the element to highlight/focus on.                                                                                                                                |
 | option.text              | string &#124; undefined                                             | The text to show (optional).                                                                                                                                                             |
 | option.preferredPosition | "top" &#124; "right" &#124; "bottom" &#124; "left" &#124; undefined | If you want to select where the text is going to show, select a preferred position. This won't apply if there isn't room for it. Acceptable values are "top", "right", "bottom", "left". |
 | option.padding           | number &#124; undefined                                             | The padding for this particular segment.                                                                                                                                                 |
@@ -96,8 +96,10 @@ A basic styling that looks like the above example would look like this:
   box-shadow: 0 0 1rem rgba(0, 0, 0, 0.2);
 }
 
-// Add a pulsating effect whenever you move to a new area to
-// highlight it to the user.
+/**
+  Add a pulsating effect whenever you move to a new area to
+  highlight it to the user.
+*/
 .interactive-tutorial-element-overlay {
   animation: pulse-orange 1s;
 }
