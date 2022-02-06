@@ -4,10 +4,23 @@ export const getFogOfWarParts = (
   element: DOMRect,
   padding: number
 ): Record<string, Rect> => {
-  const topBottom = Math.ceil(window.innerHeight - element.top) + 0.5;
-  const centerTop = Math.ceil(window.innerHeight - topBottom - padding);
-  const centerBottom = Math.floor(window.innerHeight - element.bottom);
-  const bottomTop = Math.floor(window.innerHeight - centerBottom) + 0.5;
+  let topBottom = Math.floor(window.innerHeight - element.top);
+  let centerTop = Math.floor(window.innerHeight - topBottom - padding);
+  let centerBottom = Math.floor(window.innerHeight - element.bottom);
+  let bottomTop = Math.floor(window.innerHeight - centerBottom);
+
+  const isCenterTopAndTopBottomOverlapping =
+    window.innerHeight - centerTop === topBottom + padding;
+  if (isCenterTopAndTopBottomOverlapping) {
+    topBottom += 0.5;
+  }
+
+  const isCenterBottomAndBottomTopOverlapping =
+    window.innerHeight - centerBottom === bottomTop;
+  if (isCenterBottomAndBottomTopOverlapping) {
+    bottomTop += 0.5;
+  }
+
   return {
     top: {
       top: 0,
