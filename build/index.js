@@ -14,7 +14,7 @@ export default (props) => __awaiter(void 0, void 0, void 0, function* () {
     if (props.onInit) {
         yield props.onInit();
     }
-    const generalOptions = Object.assign({ id: props.id || "interactive-tutorial-parent", padding: 10, turnOffAllTransitions: true }, props);
+    const generalOptions = Object.assign({ id: props.id || "interactive-tutorial-parent", padding: 10, turnOffAllTransitions: true, closeOnEsc: true }, props);
     createStyles();
     if (generalOptions.turnOffAllTransitions) {
         props.options
@@ -25,6 +25,6 @@ export default (props) => __awaiter(void 0, void 0, void 0, function* () {
     if (existingParent) {
         existingParent.remove();
     }
-    const parentElement = createParentElement(generalOptions.id);
+    const parentElement = createParentElement(generalOptions.id, generalOptions.closeOnEsc);
     executeTutorial(parentElement, props.options, generalOptions);
 });

@@ -14,6 +14,7 @@ export default async (props: Props) => {
     id: props.id || "interactive-tutorial-parent",
     padding: 10,
     turnOffAllTransitions: true,
+    closeOnEsc: true,
     ...props,
   };
 
@@ -31,7 +32,10 @@ export default async (props: Props) => {
     existingParent.remove();
   }
 
-  const parentElement = createParentElement(generalOptions.id);
+  const parentElement = createParentElement(
+    generalOptions.id,
+    generalOptions.closeOnEsc
+  );
 
   executeTutorial(parentElement, props.options, generalOptions);
 };

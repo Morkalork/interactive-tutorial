@@ -1,13 +1,3 @@
-export declare type GeneralOptions = {
-    options: TutorialElementOption[];
-    id?: string;
-    padding?: number;
-    textOffsetX?: number;
-    textOffsetY?: number;
-    onInit?: () => Promise<void>;
-    turnOffAllTransitions?: boolean;
-    template?: string;
-};
 export declare type TutorialElementOption = {
     elementSelector: string;
     padding?: number;
@@ -19,6 +9,17 @@ export declare type TutorialElementOption = {
     templateArgs?: {
         [key: string]: string;
     };
+};
+export declare type GeneralOptions = {
+    options: TutorialElementOption[];
+    id?: string;
+    padding?: number;
+    textOffsetX?: number;
+    textOffsetY?: number;
+    onInit?: () => Promise<void>;
+    turnOffAllTransitions?: boolean;
+    template?: string;
+    closeOnEsc?: boolean;
 };
 export declare type Position = "top" | "bottom" | "left" | "right";
 export declare type Rect = {
