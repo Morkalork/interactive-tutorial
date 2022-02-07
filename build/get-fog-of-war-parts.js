@@ -5,11 +5,11 @@ export const getFogOfWarParts = (element, padding) => {
     let bottomTop = Math.floor(window.innerHeight - centerBottom);
     const isCenterTopAndTopBottomOverlapping = window.innerHeight - centerTop === topBottom + padding;
     if (isCenterTopAndTopBottomOverlapping) {
-        topBottom += 0.5;
+        topBottom += 0.1;
     }
     const isCenterBottomAndBottomTopOverlapping = window.innerHeight - centerBottom === bottomTop;
     if (isCenterBottomAndBottomTopOverlapping) {
-        bottomTop += 0.5;
+        bottomTop += 0.1;
     }
     return {
         top: {
