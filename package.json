@@ -1,7 +1,7 @@
 {
   "name": "interactive-tutorial",
   "displayName": "Interactive Tutorial",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "description": "A library for creating interactive tutorials",
   "main": "build/index.js",
   "scripts": {
