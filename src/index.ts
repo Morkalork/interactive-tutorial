@@ -1,5 +1,4 @@
 import { createParentElement } from "./create-parent-element";
-import { createStyles } from "./create-styles";
 import { executeTutorial } from "./execute-tutorial";
 import { GeneralOptions } from "./types";
 
@@ -18,7 +17,6 @@ export default async (props: Props) => {
     ...props,
   };
 
-  createStyles();
   if (generalOptions.turnOffAllTransitions) {
     props.options.forEach(
       (option) =>
@@ -33,6 +31,10 @@ export default async (props: Props) => {
   if (existingParent) {
     existingParent.remove();
   }
+
+  document
+    .querySelectorAll(".interactive-tutorial-overlay")
+    .forEach((el) => el.remove());
 
   const parentElement = createParentElement(
     generalOptions.id,

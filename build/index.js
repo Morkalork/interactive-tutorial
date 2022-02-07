@@ -8,14 +8,12 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 import { createParentElement } from "./create-parent-element";
-import { createStyles } from "./create-styles";
 import { executeTutorial } from "./execute-tutorial";
 export default (props) => __awaiter(void 0, void 0, void 0, function* () {
     if (props.onInit) {
         yield props.onInit();
     }
     const generalOptions = Object.assign({ id: props.id || "interactive-tutorial-parent", padding: 10, turnOffAllTransitions: true, closeOnEsc: true }, props);
-    createStyles();
     if (generalOptions.turnOffAllTransitions) {
         props.options.forEach((option) => {
             var _a;
@@ -28,6 +26,9 @@ export default (props) => __awaiter(void 0, void 0, void 0, function* () {
     if (existingParent) {
         existingParent.remove();
     }
+    document
+        .querySelectorAll(".interactive-tutorial-overlay")
+        .forEach((el) => el.remove());
     const parentElement = createParentElement(generalOptions.id, generalOptions.closeOnEsc);
     executeTutorial(parentElement, props.options, generalOptions);
 });
