@@ -7,7 +7,9 @@
   "scripts": {
     "build": "tsc",
     "watch": "tsc -w",
-    "demo-build": "cd demo && webpack"
+    "demo-build": "cd demo && webpack",
+    "pre-release": "npm run build && cp ./src/styles.css ./build/styles.css",
+    "release": "npm run pre-release && npm publish"
   },
   "keywords": [
     "tutorial",

@@ -34,75 +34,16 @@
       width: 100%;
     }
 
-    .interactive-tutorial-text {
-      background-color: #fff;
-      padding: 10px;
-      border-radius: 5px;
-      box-shadow: 0 0 1rem rgba(0, 0, 0, 0.2);
+    /** Specific tutorial styling */
+    .interactive-tutorial-full-page-content h2 {
+      font-size: 3.5rem;
+      font-weight: bold;
     }
 
-    .interactive-tutorial-element-overlay {
-      animation: pulse-orange 1s;
-    }
-
-    @keyframes pulse-orange {
-      0% {
-        background-color: rgba(255, 255, 255, 0.5);
-      }
-
-      100% {
-        background-color: rgba(255, 255, 255, 0);
-      }
-    }
-
-    .interactive-tutorial-text::after {
-      color: #fff;
-      position: absolute;
-      font-size: 1rem;
-    }
-
-    .interactive-tutorial-text-bottom::after {
-      top: -1rem;
-      left: 10%;
-      content: '▲';
-    }
-
-    .interactive-tutorial-text-top::after {
-      bottom: -1rem;
-      left: 10%;
-      content: '▼';
-    }
-
-    /**
-      If the textbox is too far to the right, assume that the left part
-      of the textbox is outside of the element it's decorating.
-    */
-    .interactive-tutorial-text-bottom-right::after,
-    .interactive-tutorial-text-top-right::after {
-      left: 80%;
-    }
-
-    .interactive-tutorial-text-right::after {
-      left: -.75rem;
-      content: '◄';
-    }
-
-    .interactive-tutorial-text-left::after {
-      right: -.75rem;
-      content: '►';
-    }
-
-    .interactive-tutorial-element-overlay {
-      box-shadow: inset 0 0 1rem .1rem rgba(0, 0, 0, .75);
-    }
-
-    .enlargable-area {
-      height: 75px;
-      transition: 1s;
-    }
-
-    .enlargable-area.enlarged {
-      height: 200px;
+    .interactive-tutorial-full-page-content ul {
+      list-style-type: circle;
+      text-align: left;
+      max-width: 30rem;
     }
   </style>
 </head>

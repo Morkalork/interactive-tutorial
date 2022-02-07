@@ -17,9 +17,12 @@ export default (props) => __awaiter(void 0, void 0, void 0, function* () {
     const generalOptions = Object.assign({ id: props.id || "interactive-tutorial-parent", padding: 10, turnOffAllTransitions: true, closeOnEsc: true }, props);
     createStyles();
     if (generalOptions.turnOffAllTransitions) {
-        props.options
-            .map((option) => document.querySelector(option.elementSelector))
-            .forEach((el) => el && el.classList.add("interactive-tutorial-no-transitions"));
+        props.options.forEach((option) => {
+            var _a;
+            return option.elementSelector &&
+                ((_a = document
+                    .querySelector(option.elementSelector)) === null || _a === void 0 ? void 0 : _a.classList.add("interactive-tutorial-no-transitions"));
+        });
     }
     const existingParent = document.querySelector(`#${generalOptions.id}`);
     if (existingParent) {

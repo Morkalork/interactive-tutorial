@@ -1,0 +1,2 @@
+export declare const parseContent: (content?: string | undefined, template?: string | undefined, templateArgs?: Record<string, string> | undefined) => string | undefined;
+//# sourceMappingURL=parse-content.d.ts.map

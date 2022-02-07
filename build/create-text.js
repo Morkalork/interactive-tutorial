@@ -1,3 +1,4 @@
+import { parseContent } from "./parse-content";
 const minY = window.innerHeight * 0.2;
 const maxY = window.innerHeight * 0.8;
 const minX = window.innerWidth * 0.3;
@@ -34,21 +35,17 @@ const setLeft = (textDiv, boundaries, textOffsetX) => {
     textDiv.style.maxWidth = `${window.innerWidth * 0.25}px`;
     textDiv.classList.add("interactive-tutorial-text-left");
 };
-export const createText = (boundaries, content, textOffsetX, textOffsetY, template, templateArgs, preferredPosition = "top") => {
+export const createText = (boundaries, textOffsetX, textOffsetY, content, template, templateArgs, preferredPosition = "top") => {
     if (!content && !templateArgs) {
         return;
     }
     const textDiv = document.createElement("div");
     textDiv.classList.add("interactive-tutorial-text");
-    if (template && templateArgs) {
-        content = template;
-        for (var arg in templateArgs) {
-            content = content.replace("{" + arg + "}", templateArgs[arg]);
-            content = content.replace("{" + arg + "?}", templateArgs[arg]);
-        }
-        content = content.replace(/\{(\w+)\?\}/, "");
+    const parsedContent = parseContent(content, template, templateArgs);
+    if (!parsedContent) {
+        return;
     }
-    textDiv.innerHTML = content;
+    textDiv.innerHTML = parsedContent;
     textDiv.style.position = "absolute";
     let positionSet = false;
     if (preferredPosition === "top") {

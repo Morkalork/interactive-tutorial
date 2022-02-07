@@ -10,22 +10,21 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 import { createCloakingRectangle } from "./create-cloaking-rectangle";
 import { createText } from "./create-text";
 import { getFogOfWarParts } from "./get-fog-of-war-parts";
-export const prepareStep = (option, generalOptions) => __awaiter(void 0, void 0, void 0, function* () {
-    if (!option) {
-        return;
+import { parseContent } from "./parse-content";
+const createFullPageContent = (option, generalOptions) => {
+    const content = parseContent(option.text, generalOptions.template, option.templateArgs);
+    const fullPageContent = document.createElement("div");
+    fullPageContent.classList.add("interactive-tutorial-full-page-content");
+    if (content) {
+        fullPageContent.innerHTML = content;
     }
-    const init = option.onInit || (() => Promise.resolve());
-    yield init();
+    return { fullPageContent };
+};
+const createElementHighlightContent = (element, option, generalOptions) => {
     const totalPadding = option.padding || generalOptions.padding || 0;
-    const element = option.elementSelector && document.querySelector(option.elementSelector);
-    if (!element) {
-        return;
-    }
     const boundaries = element.getBoundingClientRect();
     const fogOfWar = getFogOfWarParts(boundaries, totalPadding);
-    const text = option.text
-        ? createText(boundaries, option.text, option.textOffsetX || generalOptions.textOffsetX || 0, option.textOffsetY || generalOptions.textOffsetY || 0, generalOptions.template, option.templateArgs, option.preferredPosition)
-        : undefined;
+    const text = createText(boundaries, option.textOffsetX || generalOptions.textOffsetX || 0, option.textOffsetY || generalOptions.textOffsetY || 0, option.text, generalOptions.template, option.templateArgs, option.preferredPosition);
     const elementOverlay = document.createElement("div");
     elementOverlay.classList.add("interactive-tutorial-element-overlay");
     elementOverlay.style.position = "absolute";
@@ -39,4 +38,16 @@ export const prepareStep = (option, generalOptions) => __awaiter(void 0, void 0,
         return Object.assign(Object.assign({}, acc), { [key]: div });
     }, { text, elementOverlay });
     return step;
+};
+export const prepareStep = (option, generalOptions) => __awaiter(void 0, void 0, void 0, function* () {
+    if (!option) {
+        return;
+    }
+    const init = option.onInit || (() => Promise.resolve());
+    yield init();
+    const element = option.elementSelector && document.querySelector(option.elementSelector);
+    if (!element) {
+        return createFullPageContent(option, generalOptions);
+    }
+    return createElementHighlightContent(element, option, generalOptions);
 });

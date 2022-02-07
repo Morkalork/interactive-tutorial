@@ -4,5 +4,7 @@ export const changeStep = (parent, step) => {
     Object.keys(step).forEach((key) => {
         parent.appendChild(step[key]);
     });
-    parent.appendChild(text);
+    if (text) {
+        parent.appendChild(text);
+    }
 };

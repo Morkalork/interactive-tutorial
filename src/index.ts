@@ -20,11 +20,13 @@ export default async (props: Props) => {
 
   createStyles();
   if (generalOptions.turnOffAllTransitions) {
-    props.options
-      .map((option) => document.querySelector(option.elementSelector))
-      .forEach(
-        (el) => el && el.classList.add("interactive-tutorial-no-transitions")
-      );
+    props.options.forEach(
+      (option) =>
+        option.elementSelector &&
+        document
+          .querySelector(option.elementSelector)
+          ?.classList.add("interactive-tutorial-no-transitions")
+    );
   }
 
   const existingParent = document.querySelector(`#${generalOptions.id}`);

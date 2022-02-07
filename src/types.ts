@@ -1,5 +1,5 @@
 export type TutorialElementOption = {
-  elementSelector: string;
+  elementSelector?: string;
   padding?: number;
   text?: string;
   textOffsetX?: number;

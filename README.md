@@ -124,79 +124,10 @@ And to style it using the available class selectors:
 | .interactive-tutorial-text-top-right            | The text element whenever it is positioned above an element but starts from the right. |
 | .interactive-tutorial-text-bottom-right         | The text element whenever it is positioned below an element but starts from the right. |
 
-A basic styling that looks like the above example would look like this:
+There is a stylesheet available (which is used in the above demo) which you can import from inside the npm package.
 
-```css
-.interactive-tutorial-text {
-  background-color: #fff;
-  padding: 10px;
-  border-radius: 5px;
-  box-shadow: 0 0 1rem rgba(0, 0, 0, 0.2);
-}
-
-.interactive-tutorial-element-overlay {
-  animation: pulse-orange 1s;
-}
-
-@keyframes pulse-orange {
-  0% {
-    background-color: rgba(255, 255, 255, 0.5);
-  }
-
-  100% {
-    background-color: rgba(255, 255, 255, 0);
-  }
-}
-
-.interactive-tutorial-text::after {
-  color: #fff;
-  position: absolute;
-  font-size: 1rem;
-}
-
-.interactive-tutorial-text-bottom::after {
-  top: -1rem;
-  left: 10%;
-  content: "▲";
-}
-
-.interactive-tutorial-text-top::after {
-  bottom: -1rem;
-  left: 10%;
-  content: "▼";
-}
-
-/**
-  If the textbox is too far to the right, assume that the left part
-  of the textbox is outside of the element it's decorating.
-*/
-.interactive-tutorial-text-bottom-right::after,
-.interactive-tutorial-text-top-right::after {
-  left: 80%;
-}
-
-.interactive-tutorial-text-right::after {
-  left: -0.75rem;
-  content: "◄";
-}
-
-.interactive-tutorial-text-left::after {
-  right: -0.75rem;
-  content: "►";
-}
-
-.interactive-tutorial-element-overlay {
-  box-shadow: inset 0 0 1rem 0.1rem rgba(0, 0, 0, 0.75);
-}
-
-.enlargable-area {
-  height: 75px;
-  transition: 1s;
-}
-
-.enlargable-area.enlarged {
-  height: 200px;
-}
+```js
+import "./node_modules/interactive-tutorial/build/styles.css";
 ```
 
 ## Working with the code

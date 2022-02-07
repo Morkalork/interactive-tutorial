@@ -1,3 +1,4 @@
+import { parseContent } from "./parse-content";
 import { Position } from "./types";
 
 const minY = window.innerHeight * 0.2;
@@ -66,9 +67,9 @@ const setLeft = (
 
 export const createText = (
   boundaries: DOMRect,
-  content: string,
   textOffsetX: number,
   textOffsetY: number,
+  content?: string,
   template?: string,
   templateArgs?: Record<string, string>,
   preferredPosition: Position = "top"
@@ -80,16 +81,12 @@ export const createText = (
   const textDiv = document.createElement("div");
   textDiv.classList.add("interactive-tutorial-text");
 
-  if (template && templateArgs) {
-    content = template;
-    for (var arg in templateArgs) {
-      content = content.replace("{" + arg + "}", templateArgs[arg]);
-      content = content.replace("{" + arg + "?}", templateArgs[arg]);
-    }
-
-    content = content.replace(/\{(\w+)\?\}/, "");
+  const parsedContent = parseContent(content, template, templateArgs);
+  if (!parsedContent) {
+    return;
   }
-  textDiv.innerHTML = content;
+
+  textDiv.innerHTML = parsedContent;
 
   textDiv.style.position = "absolute";
 
