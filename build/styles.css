@@ -1,3 +1,11 @@
+.interactive-tutorial-no-transitions {
+  -webkit-transition: none !important;
+  -moz-transition: none !important;
+  -o-transition: none !important;
+  -ms-transition: none !important;
+  transition: none !important;
+}
+
 .interactive-tutorial-text {
   background-color: #fff;
   padding: 10px;
@@ -71,7 +79,7 @@
 
 .interactive-tutorial-cloaking-rectangle,
 .interactive-tutorial-full-page-content {
-  background-color: rgba(0, 0, 0, 0.75);
+  background-color: rgba(0, 0, 0, 0.5);
 }
 
 /** Full page content**/
